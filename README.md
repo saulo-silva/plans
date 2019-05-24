@@ -2,6 +2,6 @@
 
 Trabalho simples de teste da aplicação Laravel Nova. Simplesmente um registrados de objetivos.
 
-[code]
+```bash
 composer require saulo-silva/plans
-[/code]
+```
