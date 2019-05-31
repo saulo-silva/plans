@@ -2,14 +2,25 @@
 
 namespace SauloSilva\Plans;
 
+use SauloSilva\Plans\Policies\PlansPolicy;
 use Laravel\Nova\Nova;
 use Laravel\Nova\Events\ServingNova;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\ServiceProvider;
+use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use SauloSilva\Plans\Http\Middleware\Authorize;
+use SauloSilva\Plans\Models\Plan;
 
 class ToolServiceProvider extends ServiceProvider
 {
+    /**
+     * The policy mappings for the application.
+     *
+     * @var array
+     */
+    protected $policies = [
+        Plan::class => PlansPolicy::class,
+    ];
+
     /**
      * Bootstrap any application services.
      *
@@ -39,6 +50,8 @@ class ToolServiceProvider extends ServiceProvider
         if ($this->app->routesAreCached()) {
             return;
         }
+
+        $this->registerPolicies();
 
         Route::middleware(['nova', Authorize::class])
                 ->prefix('nova-vendor/plans')
