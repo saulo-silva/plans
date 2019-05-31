@@ -5,6 +5,7 @@ namespace SauloSilva\Plans\Nova;
 use Laravel\Nova\Fields\HasMany;
 use SauloSilva\Plans\Nova\Actions\ChangeStatus;
 use SauloSilva\Plans\Nova\Filters\StatusFilter;
+use SauloSilva\Plans\Nova\Lenses\PlansPerPriority;
 use SauloSilva\Plans\Nova\Lenses\PlansPerType;
 use SauloSilva\Plans\Nova\Metrics\TotalSaved;
 use Vyuldashev\NovaMoneyField\Money;
@@ -196,7 +197,8 @@ class Plan extends Resource
     public function lenses(Request $request)
     {
         return [
-            new PlansPerType()
+            new PlansPerType(),
+            new PlansPerPriority()
         ];
     }
 
