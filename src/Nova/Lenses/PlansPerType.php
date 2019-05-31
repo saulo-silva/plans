@@ -26,6 +26,7 @@ class PlansPerType extends Lens
         return $request->withOrdering($request->withFilters(
             $query->select(self::columns())
                 ->groupBy( 'type')
+                ->orderBy('total', 'Desc')
         ));
     }
 
