@@ -54,8 +54,8 @@ class PlansPerPriority extends Lens
     {
         return [
 //            ID::make('ID', 'id')->sortable(),
-            Money::make('Valor Total', 'BRL', 'total')
-                ->sortable(),
+            Money::make('Valor Total', 'BRL', 'total'),
+
             RadioButton::make('Prioridade', 'priority')
                 ->options([
                     'HIGH' => 'Alta',

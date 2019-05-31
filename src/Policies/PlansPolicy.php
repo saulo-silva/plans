@@ -43,7 +43,7 @@ class PlansPolicy
 
     protected function check()
     {
-        $arr = ['plans-per-type'];
+        $arr = ['plans-per-type', 'plans-per-priority'];
 
         $path = basename(request()->getPathInfo());
 
