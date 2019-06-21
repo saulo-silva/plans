@@ -62,7 +62,6 @@ class Plan extends Resource
     public function fields(Request $request)
     {
         return [
-            new Panel('Resumo', $this->resumeFields()),
             ID::make()->sortable(),
 
             Text::make('Nome', 'name')
@@ -83,6 +82,7 @@ class Plan extends Resource
 
             new Panel('Informação Adicional', $this->configFields()),
 
+            new Panel('Resumo', $this->resumeFields()),
 
             HasMany::make('Depósitos', 'planDeposits', 'SauloSilva\Plans\Nova\PlanDeposits'),
 
@@ -93,11 +93,11 @@ class Plan extends Resource
     {
         return [
             Money::make('Total Depositado', 'BRL', 'total_deposit')
-                ->onlyOnDetail(),
+                ->exceptOnForms(),
 
             Text::make('Percentual Depositado', function() {
                 return number_format($this->total_percent, 2) . '%';
-            })->onlyOnDetail(),
+            })->exceptOnForms(),
         ];
     }
 
