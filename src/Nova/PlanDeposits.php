@@ -3,19 +3,10 @@
 namespace SauloSilva\Plans\Nova;
 
 use Laravel\Nova\Fields\DateTime;
-use SauloSilva\Plans\Nova\Actions\Plan\ChangeStatus;
-use SauloSilva\Plans\Nova\Filters\Plan\StatusFilter;
 use Vyuldashev\NovaMoneyField\Money;
-use Laravel\Nova\Fields\Date;
-use Fourstacks\NovaCheckboxes\Checkboxes;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
-use Laravel\Nova\Panel;
 use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\Textarea;
-use OwenMelbz\RadioField\RadioButton;
-use Laravel\Nova\Http\Requests\NovaRequest;
-use Inspheric\Fields\Indicator;
 use App\Nova\Resource;
 
 class PlanDeposits extends Resource
@@ -60,6 +51,8 @@ class PlanDeposits extends Resource
     {
         return [
             ID::make(),
+
+            Text::make('Descrição', 'description'),
 
             Money::make('Valor', 'BRL', 'value'),
 
