@@ -4,6 +4,7 @@ namespace SauloSilva\Plans\Nova;
 
 use Laravel\Nova\Fields\HasMany;
 use SauloSilva\Plans\Nova\Actions\ChangeStatus;
+use SauloSilva\Plans\Nova\Filters\PriorityFilter;
 use SauloSilva\Plans\Nova\Filters\StatusFilter;
 use SauloSilva\Plans\Nova\Lenses\PlansPerPriority;
 use SauloSilva\Plans\Nova\Lenses\PlansPerType;
@@ -153,11 +154,7 @@ class Plan extends Resource
                 ->sortable(),
 
             RadioButton::make('Prioridade', 'priority')
-                ->options([
-                    'HIGH' => 'Alta',
-                    'NORMAL' => 'Normal',
-                    'LOW' => 'Baixa',
-                ])
+                ->options(Plan::priorityOptions())
                 ->default('NORMAL')
                 ->rules('required'),
         ];
@@ -184,7 +181,8 @@ class Plan extends Resource
     public function filters(Request $request)
     {
         return [
-            new StatusFilter()
+            new StatusFilter(),
+            new PriorityFilter()
         ];
     }
 

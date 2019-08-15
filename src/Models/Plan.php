@@ -18,6 +18,32 @@ class Plan extends Model
      */
     protected $dates = ['planned_date', 'started_date', 'completed_date'];
 
+    /*
+     * Options to radio ou checkbox
+     */
+    public static function statusOptions()
+    {
+        return [
+            'WAITING' => 'Aguardando',
+            'IN_PROGRESS' => 'Em andamento',
+            'PAUSE' => 'Pausado',
+            'COMPLETED' => 'Concluído',
+            'FAILED' => 'Falhou',
+        ];
+    }
+
+    /*
+ * Options to radio ou checkbox
+ */
+    public static function priorityOptions()
+    {
+        return [
+            'HIGH' => 'Alta',
+            'NORMAL' => 'Normal',
+            'LOW' => 'Baixa',
+        ];
+    }
+
     public function planDeposits()
     {
         return $this->hasMany(PlanDeposit::class);
@@ -33,22 +59,8 @@ class Plan extends Model
         if ($this->total_deposit > 0) {
             return ($this->total_deposit * 100) / $this->total;
         }
-        
-        return 0;
-    }
 
-    /*
-     * Options to radio ou checkbox
-     */
-    public static function statusOptions()
-    {
-        return [
-            'WAITING' => 'Aguardando',
-            'IN_PROGRESS' => 'Em andamento',
-            'PAUSE' => 'Pausado',
-            'COMPLETED' => 'Concluído',
-            'FAILED' => 'Falhou',
-        ];
+        return 0;
     }
 
     public function changeStatus($status)
