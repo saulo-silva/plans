@@ -47,4 +47,14 @@ class StatusFilter extends Filter
 
         return array_flip($options);
     }
+
+    /**
+     * Set the default options for the filter.
+     *
+     * @return array|mixed
+     */
+    public function default()
+    {
+        return ['IN_PROGRESS'];
+    }
 }
