@@ -20,6 +20,7 @@ use Laravel\Nova\Fields\Textarea;
 use OwenMelbz\RadioField\RadioButton;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Inspheric\Fields\Indicator;
+use Laravel\Nova\Fields\Badge;
 use App\Nova\Resource;
 
 class Plan extends Resource
@@ -143,15 +144,15 @@ class Plan extends Resource
                 ->onlyOnForms()
                 ->rules('required'),
 
-            Indicator::make('Situação', 'status')
+            Badge::make('Situação', 'status')
                 ->exceptOnForms()
                 ->labels(Plan::statusOptions())
-                ->colors([
-                    'WAITING' => 'grey',
-                    'IN_PROGRESS' => 'green',
-                    'PAUSE' => 'yellow',
-                    'COMPLETED' => 'blue',
-                    'FAILED' => 'red',
+                ->map([
+                    'WAITING' => 'warning',
+                    'IN_PROGRESS' => 'info',
+                    'PAUSE' => 'info',
+                    'COMPLETED' => 'success',
+                    'FAILED' => 'danger',
                 ])
                 ->sortable(),
 
