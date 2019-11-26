@@ -114,6 +114,7 @@ class Plan extends Resource
                 ])
                 ->default('ACQUISITION')
                 ->rules('required')
+                ->hideFromIndex()
                 ->sortable(),
             // apenas teste
             Checkboxes::make('Direcionado', 'destination')
@@ -123,6 +124,7 @@ class Plan extends Resource
                     'RUTH' => 'Ruth',
                     'SOFIA' => 'Sofia',
                 ])
+                ->hideFromIndex()
                 ->rules('required'),
 
             Date::make('Data para inicial', 'started_date')
