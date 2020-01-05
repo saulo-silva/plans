@@ -150,7 +150,7 @@ class Plan extends Resource
                 ->map([
                     'WAITING' => 'warning',
                     'IN_PROGRESS' => 'info',
-                    'PAUSE' => 'info',
+                    'PAUSE' => 'warning',
                     'COMPLETED' => 'success',
                     'FAILED' => 'danger',
                 ])

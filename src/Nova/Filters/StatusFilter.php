@@ -3,10 +3,10 @@
 namespace SauloSilva\Plans\Nova\Filters;
 
 use Illuminate\Http\Request;
-use Laravel\Nova\Filters\Filter;
+use Laravel\Nova\Filters\BooleanFilter;
 use SauloSilva\Plans\Models\Plan;
 
-class StatusFilter extends Filter
+class StatusFilter extends BooleanFilter
 {
 
     /**
@@ -20,7 +20,7 @@ class StatusFilter extends Filter
      *
      * @var string
      */
-    public $component = 'select-filter';
+    public $component = 'boolean-filter';
 
     /**
      * Apply the filter to the given query.
@@ -32,7 +32,16 @@ class StatusFilter extends Filter
      */
     public function apply(Request $request, $query, $value)
     {
-        return $query->where('status', $value);
+        $items = collect($value);
+        $searchStatus = $items->filter(function ($item) {
+            return $item === true;
+        });
+
+        if ($searchStatus->count() === 0) {
+            return $query;
+        }
+
+        return $query->whereIn('status', $searchStatus->keys());
     }
 
     /**
@@ -55,6 +64,8 @@ class StatusFilter extends Filter
      */
     public function default()
     {
-        return ['IN_PROGRESS'];
+        return [
+            'IN_PROGRESS' => true
+        ];
     }
 }
