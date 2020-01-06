@@ -8,6 +8,7 @@
     "license": "MIT",
     "require": {
         "php": ">=7.1.0",
+        "anaseqal/nova-import": "^0.0.2",
         "fourstacks/nova-checkboxes": "^0.1.5",
         "inspheric/nova-indicator-field": "^1.4",
         "owenmelbz/nova-radio-field": "^0.0.5",

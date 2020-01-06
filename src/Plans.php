@@ -6,6 +6,7 @@ use Laravel\Nova\Nova;
 use Laravel\Nova\Tool;
 use SauloSilva\Plans\Nova\Plan;
 use SauloSilva\Plans\Nova\PlanDeposits;
+use Anaseqal\NovaImport\NovaImport;
 
 class Plans extends Tool
 {

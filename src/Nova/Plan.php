@@ -4,6 +4,7 @@ namespace SauloSilva\Plans\Nova;
 
 use Laravel\Nova\Fields\HasMany;
 use SauloSilva\Plans\Nova\Actions\ChangeStatus;
+use SauloSilva\Plans\Nova\Actions\ImportPlans;
 use SauloSilva\Plans\Nova\Filters\PriorityFilter;
 use SauloSilva\Plans\Nova\Filters\StatusFilter;
 use SauloSilva\Plans\Nova\Lenses\PlansPerPriority;
@@ -212,6 +213,7 @@ class Plan extends Resource
     public function actions(Request $request)
     {
         return [
+            new ImportPlans(),
             new ChangeStatus()
         ];
     }
